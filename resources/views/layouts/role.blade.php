@@ -25,19 +25,19 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}} <input type="hidden" name="email" value="{{$user->email}}"></td>
             <td>
-                <input type="checkbox" {{$user->hasRole('User') ? 'checked' : ''}} name="role_user">
+                <input type="checkbox" onChange="this.form.submit()" {{$user->hasRole('User') ? 'checked' : ''}} name="role_user">
             </td>
             <td>
-                <input type="checkbox" {{$user->hasRole('Editor') ? 'checked' : ''}} name="role_editor">
+                <input type="checkbox" onChange="this.form.submit()" {{$user->hasRole('Editor') ? 'checked' : ''}} name="role_editor">
 
             </td>
              <td>
-                 <input type="checkbox" {{$user->hasRole('Admin') ? 'checked' : ''}} name="role_admin">
+                 <input type="checkbox" onChange="this.form.submit()" {{$user->hasRole('Admin') ? 'checked' : ''}} name="role_admin">
 
              </td>
                 {{csrf_field()}}
 
-                <td><button type="submit">Submit Roles</button></td>
+                {{--<td><button type="submit">Submit Roles</button></td>--}}
                 </form>
             </tr>
         @endforeach

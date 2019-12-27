@@ -52,17 +52,18 @@ class UserController extends Controller
     {
         $user = User::where('email',$request['email'])->first();
         $user->roles()->detach();
+
         if ($request['role_user'])
         {
-            $user->roles()->attach(Role::where('name','User'))->first();
+            $user->roles()->attach(Role::where('name','User')->first());
         }
         if ($request['role_editor'])
         {
-            $user->roles()->attach(Role::where('name','Editor'))->first();
+            $user->roles()->attach(Role::where('name','Editor')->first());
         }
         if ($request['role_admin'])
         {
-            $user->roles()->attach(Role::where('name','Admin'))->first();
+            $user->roles()->attach(Role::where('name','Admin')->first());
         }
         return redirect()->back();
     }

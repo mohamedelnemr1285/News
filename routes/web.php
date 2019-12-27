@@ -38,22 +38,20 @@ Route::get('/search','Articlecontroller@search')->name('search');
 
 
 
-Route::group(['middleware' => 'roles', 'roles' => ['admin','editor']],function (){
+Route::group(['middleware' => 'roles', 'roles' => ['Admin']],function (){
     Route::get('/admin','UserController@admin')->name('admin');
     Route::post('/add-role','UserController@addRole')->name('add.role');
     Route::get('/statistics','Articlecontroller@statistics')->name('statistics');
     Route::post('/setting','UserController@setting')->name('setting');
 
-
-
 });
 
 
-//Route::get('/statistics',[
-//    'uses' => 'Articlecontroller@statistics',
-//    'as' => 'statistics',
+//Route::get('/admin',[
+//    'uses' => 'UserController@admin',
+//    'as' => 'admin',
 //    'middleware' => 'roles',
-//    'role' => 'admin','editor','user',
+//    'roles' => ['admin','editor'],
 //]);
 //
 //
@@ -61,7 +59,7 @@ Route::group(['middleware' => 'roles', 'roles' => ['admin','editor']],function (
 //    'uses' => 'UserController@addRole',
 //    'as' => 'add.role',
 //    'middleware' => 'roles',
-//    'role' => 'admin'
+//    'roles' => ['admin']
 //    ]);
 
 
