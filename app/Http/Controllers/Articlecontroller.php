@@ -31,9 +31,13 @@ class Articlecontroller extends Controller
 
 public function search(Request $request){
 
-    $articles = Article::whereHas('User', function($q) use ($request) {
-         $q->where('news', 'LIKE', '%' . $request->search . '%');
-    })->paginate(1);
+//    $articles = Article::whereHas('User', function($q) use ($request) {
+//         $q->where('news', 'LIKE', '%' . $request->search . '%');
+//    })->paginate(1);
+
+    $search = $request->input('search');
+    $articles = Article::latest()
+    ->Search($search);
 
 
     return view('layouts.display', compact('articles'));

@@ -18,4 +18,11 @@ class Article extends Model
     {
         return $this->hasMany(like::class);
     }
+
+    public function scopeSearch($query,$search)
+    {
+        return $query
+            ->where('article', 'LIKE', "%$search%")
+           ->orwhere('news','LIKE',"%$search%")->paginate(10);
+       }
 }
