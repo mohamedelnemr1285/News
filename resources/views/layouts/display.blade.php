@@ -108,7 +108,7 @@
 
                 @php
                     $like_count = 0;
-                      $dislike_count = 0;
+                    $dislike_count = 0;
 
                     $like_status = "btn-secondary";
                     $dislike_status = "btn-secondary";
@@ -134,8 +134,11 @@
 
                 @endforeach
 
-                <button data-like="{{$like_status}}" type="button" class="btn {{$like_status}}">like <span class="glyphicon glyphicon-thumbs-up"></span> {{$like_count}} </button>
-                <button  type="button" class="btn {{$dislike_status}}">dislike <span class="glyphicon glyphicon-thumbs-down"></span> {{$dislike_count}} </button>
+                <button type="button" data-article="{{$article->id}}" data-like="{{$like_status}}" class="like btn{{$like_status}}">like
+                    <span class="glyphicon glyphicon-thumbs-up"></span> <b>{{$like_count}}</b> </button>
+
+                <button type="button" data-article="{{$article->id}}" data-dislike="{{$dislike_status}}" class="dislike btn{{$dislike_status}}">dislike
+                    <span class="glyphicon glyphicon-thumbs-down"></span> <b>{{$dislike_count}}</b> </button>
 
 
                 @if(Auth::check())

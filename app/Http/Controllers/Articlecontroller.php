@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Validator;
 
@@ -188,6 +189,45 @@ public function search(Request $request){
     }
 
 
+    public function like(Request $request){
+
+
+        $like_s = $request->like_s;
+        $article_id = $request->article_id;
+
+        $like = DB::table('likes')->where('article_id',$article_id)
+            ->where('user_id',Auth::user()->id)
+            ->first();
+        if(!$like){
+            $new_like = new like;
+                $new_like->article_id = $article_id;
+                $new_like->user_id = Auth::user()->id;
+               $new_like->like = 1;
+            $new_like->save();
+            $is_like = 1;
+
+        }elseif ($like->like == 1){
+            DB::table('likes')
+                ->where('article_id',$article_id)
+                ->where('user_id',Auth::user()->id)
+                ->delete();
+                 $is_like = 0;
+
+
+        }elseif ($like->like == 0){
+            DB::table('likes')
+                ->where('article_id',$article_id)
+                ->where('user_id',Auth::user()->id)
+                ->update(['like' => 1]);
+                 $is_like = 1;
+        }
+
+        $response=[
+
+            'is_like' => $is_like,
+        ];
+        return response()->json($response , 200);
+    }
 
 }
 

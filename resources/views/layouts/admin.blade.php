@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Simple Tables</title>
+    <title>{{config('app.name')}}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -363,7 +363,12 @@
 <script type="text/javascript" src="{{asset('/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/bower_components/admin-lte/dist/js/adminlte.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/js/likes.js')}}"></script>
+
+<script type="text/javascript">
+
+</script>
+
+<script type="text/javascript" src="{{asset('/js/like.js')}}"></script>
 
 </body>
 </html>
