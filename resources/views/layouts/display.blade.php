@@ -134,10 +134,10 @@
 
                 @endforeach
 
-                <button type="button" data-article="{{$article->id}}" data-like="{{$like_status}}" class="like btn{{$like_status}}">like
+                <button type="button" data-article="{{$article->id}}_l" data-like="{{$like_status}}" class="like btn{{$like_status}}">like
                     <span class="glyphicon glyphicon-thumbs-up"></span> <b>{{$like_count}}</b> </button>
 
-                <button type="button" data-article="{{$article->id}}" data-dislike="{{$dislike_status}}" class="dislike btn{{$dislike_status}}">dislike
+                <button type="button" data-article="{{$article->id}}_d" data-dislike="{{$dislike_status}}" class="dislike btn{{$dislike_status}}">dislike
                     <span class="glyphicon glyphicon-thumbs-down"></span> <b>{{$dislike_count}}</b> </button>
 
 

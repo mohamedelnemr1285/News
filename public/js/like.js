@@ -1,8 +1,9 @@
 $(".like").on('click',function () {
     var like_s = $(this).attr('data-like');
      var   article_id = $(this).attr('data-article');
-    var url = "{{route('like')}}";
-    var   token = "{{Session::token()}}";
+    article_id = article_id.slice(0,1);
+    //alert(article_id);
+
 
     $.ajax({
         type:'POST',
@@ -10,7 +11,12 @@ $(".like").on('click',function () {
         data :{like_s: like_s ,article_id: article_id , _token:token},
         success: function(data) {
 
-            alert('HAY');
+        if(data.is_like == 1){
+            $('*[data-article="' + article_id + '_l"]').removeClass('btn-secondary').addClass('btn-success');
+        }
+            if(data.is_like == 0){
+                $('*[data-article="' + article_id + '_l"]').removeClass('btn-secondary').addClass('btn-danger');
+            }
 
         }
     });

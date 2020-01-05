@@ -365,7 +365,8 @@
 <script type="text/javascript" src="{{asset('/bower_components/admin-lte/dist/js/adminlte.min.js')}}"></script>
 
 <script type="text/javascript">
-
+    var url = "{{route('like')}}";
+    var   token = "{{Session::token()}}";
 </script>
 
 <script type="text/javascript" src="{{asset('/js/like.js')}}"></script>

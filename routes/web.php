@@ -50,7 +50,7 @@ Route::group(['middleware' => 'roles', 'roles' => ['Admin']],function (){
 //
 //
 //});
-Route::get('/like','Articlecontroller@like')->name('like');
+Route::post('/like','Articlecontroller@like')->name('like');
 
 
 //Route::get('/admin',[
