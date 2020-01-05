@@ -46,11 +46,12 @@ Route::group(['middleware' => 'roles', 'roles' => ['Admin']],function (){
 
 });
 
-//Route::group(['middleware' => 'roles', 'roles' => ['Admin','User']],function (){
-//
-//
-//});
-Route::post('/like','Articlecontroller@like')->name('like');
+Route::group(['middleware' => 'roles', 'roles' => ['Admin','User']],function (){
+    Route::post('/like','Articlecontroller@like')->name('like');
+    Route::post('/dislike','Articlecontroller@dislike')->name('dislike');
+
+
+});
 
 
 //Route::get('/admin',[

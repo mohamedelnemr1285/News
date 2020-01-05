@@ -366,6 +366,7 @@
 
 <script type="text/javascript">
     var url = "{{route('like')}}";
+    var url_dis = "{{route('dislike')}}";
     var   token = "{{Session::token()}}";
 </script>
 

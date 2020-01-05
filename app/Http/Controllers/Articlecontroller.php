@@ -31,14 +31,9 @@ class Articlecontroller extends Controller
 
 public function search(Request $request){
 
-//    $articles = Article::whereHas('User', function($q) use ($request) {
-//         $q->where('news', 'LIKE', '%' . $request->search . '%');
-//    })->paginate(1);
-
     $search = $request->input('search');
     $articles = Article::latest()
     ->Search($search);
-
 
     return view('layouts.display', compact('articles'));
 }
@@ -229,6 +224,49 @@ public function search(Request $request){
         $response=[
 
             'is_like' => $is_like,
+        ];
+        return response()->json($response , 200);
+    }
+
+
+
+
+    public function dislike(Request $request){
+
+
+        $like_s = $request->like_s;
+        $article_id = $request->article_id;
+
+        $dislike = DB::table('likes')->where('article_id',$article_id)
+            ->where('user_id',Auth::user()->id)
+            ->first();
+        if(!$dislike){
+            $new_like = new like;
+            $new_like->article_id = $article_id;
+            $new_like->user_id = Auth::user()->id;
+            $new_like->like = 0;
+            $new_like->save();
+            $is_dislike = 1;
+
+        }elseif ($dislike->like == 0){
+            DB::table('likes')
+                ->where('article_id',$article_id)
+                ->where('user_id',Auth::user()->id)
+                ->delete();
+           $is_dislike = 0;
+
+
+        }elseif ($dislike->like == 1){
+            DB::table('likes')
+                ->where('article_id',$article_id)
+                ->where('user_id',Auth::user()->id)
+                ->update(['like' => 0]);
+            $is_dislike = 1;
+        }
+
+        $response=[
+
+            'is_like' => $is_dislike,
         ];
         return response()->json($response , 200);
     }
