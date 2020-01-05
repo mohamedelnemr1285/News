@@ -194,14 +194,15 @@ public function search(Request $request){
 
         $like_s = $request->like_s;
         $article_id = $request->article_id;
+        $user_id = $request->user_id;
 
         $like = DB::table('likes')->where('article_id',$article_id)
-            ->where('user_id',Auth::user()->id)
+            ->where('user_id',$user_id)
             ->first();
         if(!$like){
             $new_like = new like;
                 $new_like->article_id = $article_id;
-                $new_like->user_id = Auth::user()->id;
+                $new_like->user_id = $user_id;
                $new_like->like = 1;
             $new_like->save();
             $is_like = 1;
@@ -209,7 +210,7 @@ public function search(Request $request){
         }elseif ($like->like == 1){
             DB::table('likes')
                 ->where('article_id',$article_id)
-                ->where('user_id',Auth::user()->id)
+                ->where('user_id',$user_id)
                 ->delete();
                  $is_like = 0;
 
@@ -217,7 +218,7 @@ public function search(Request $request){
         }elseif ($like->like == 0){
             DB::table('likes')
                 ->where('article_id',$article_id)
-                ->where('user_id',Auth::user()->id)
+                ->where('user_id',$user_id)
                 ->update(['like' => 1]);
                  $is_like = 1;
         }

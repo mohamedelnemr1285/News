@@ -104,7 +104,7 @@
                 <p class="date">Date:{{$article->created_at}}</p>
                 <h4 class="text-capitalize" style=" line-height: 2;">{{$article->news}}</h4>
                 <p class="text-capitalize" style=" line-height: 2;">{{$article->article}}</p>
-                <img src="{{asset('storage/' .$article->image)}}" class="img-fluid" alt="Responsive image"><br>
+                <img style="display:block;width:100%;height:50%;" src="{{asset('storage/' .$article->image)}}" class="img-fluid" alt="Responsive image"><br>
 
                 @php
                     $like_count = 0;
@@ -143,7 +143,7 @@
 
                 @if(Auth::check())
                     @if(Auth::user()->hasRole(['admin','editor']))
-                <a href="delete/{{$article->id}}"><i class="fa fa-trash fa-2x" style=" color:red;" ></i></a>
+                <a href="delete/{{$article->id}}"><i class="delete fa fa-trash fa-2x" style=" color:red;" ></i></a>
                 <a href="{{route('create')}}" style="color:green"><i class="fa fa-2x fa-plus" aria-hidden="true"></i></a>
                 <a class="btn btn-primary" href="{{ route('Article.edit',$article->id) }}">Edit</a>
                     @endif
